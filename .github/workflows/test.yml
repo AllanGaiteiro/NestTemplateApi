@@ -41,28 +41,3 @@ jobs:
 
       - name: Run E2E tests
         run: npm run test:e2e    # Comando para rodar os testes E2E
-
-  coverage:
-    runs-on: ubuntu-latest   # Defina o sistema operacional onde os testes irão rodar
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests with coverage
-        run: npm run test -- --coverage --coverageReporters=text-lcov | tee result.lcov
-        continue-on-error: true
-
-      - name: Upload coverage results
-        if: success()
-        uses: codecov/codecov-action@v3
-        with:
-          file: result.lcov    # Envia o arquivo de cobertura para o Codecov
