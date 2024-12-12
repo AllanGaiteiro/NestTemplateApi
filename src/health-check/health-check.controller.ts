@@ -8,7 +8,7 @@ export class HealthCheckController {
   constructor(private readonly healthCheckService: HealthCheckService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Verifica se a API está funcionando' })
+  @ApiOperation({ summary: 'Verifica se a API está funcionando sim' })
   @ApiResponse({ status: 200, description: 'API está rodando', type: HealthStatusEntity })
   getHealthStatus(): HealthStatusEntity {
     return this.healthCheckService.getHealthStatus();
