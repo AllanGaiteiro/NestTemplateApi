@@ -5,10 +5,10 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Instalar dependências globais mínimas (opcional, pode instalar no exec)
-RUN npm install -g @nestjs/cli
+RUN npm install
 
 # Expor a porta onde o app será executado
 EXPOSE 3000
 
 # Definir comando padrão
-CMD [ "sh" ]
+CMD ["sh", "-c", "npx typeorm migration:run && npm run start:dev"]
