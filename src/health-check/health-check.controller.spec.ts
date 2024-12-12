@@ -21,7 +21,7 @@ describe('HealthCheckController', () => {
   });
 
   describe('should return ', () => {
-    it('should return "API is running!"', () => {
+    it('should return "API is running!www"', () => {
       expect(controller.getHealthStatus().status).toBe(
         service.getHealthStatus().status,
       );
