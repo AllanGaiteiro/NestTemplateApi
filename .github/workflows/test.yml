@@ -62,7 +62,6 @@ jobs:
 
       - name: Run tests with coverage
         run: npm run test -- --coverage --coverageReporters=text-lcov | tee result.lcov
-        continue-on-error: true
 
       - name: Upload coverage results
         if: success()
