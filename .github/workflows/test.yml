@@ -27,7 +27,10 @@ jobs:
       - name: Run E2E tests
         run: npm run test:e2e    # Comando para rodar os testes E2E (substitua conforme seu projeto)
 
-      - name: Check code coverage
+      - name: Run E2E tests
+        run: npm run test:e2e    # Comando para rodar os testes E2E
+
+      - name: Check code coverage for unit tests
         run: npm run test -- --coverage --coverageReporters=text-lcov | tee result.lcov
         continue-on-error: true
 
