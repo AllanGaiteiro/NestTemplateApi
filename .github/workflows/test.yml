@@ -6,7 +6,7 @@ on:
       - main   # Ou o nome da branch que você usa para integrar as PRs
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest   # Defina o sistema operacional onde os testes irão rodar
     
     steps:
@@ -27,10 +27,40 @@ jobs:
       - name: Run E2E tests
         run: npm run test:e2e    # Comando para rodar os testes E2E (substitua conforme seu projeto)
 
+  e2e-tests:
+    runs-on: ubuntu-latest   # Defina o sistema operacional onde os testes irão rodar
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Run E2E tests
         run: npm run test:e2e    # Comando para rodar os testes E2E
 
-      - name: Check code coverage for unit tests
+  coverage:
+    runs-on: ubuntu-latest   # Defina o sistema operacional onde os testes irão rodar
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests with coverage
         run: npm run test -- --coverage --coverageReporters=text-lcov | tee result.lcov
         continue-on-error: true
 
