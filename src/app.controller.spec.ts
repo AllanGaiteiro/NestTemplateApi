@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
+import { responseHealthStatus } from './common/health-status/responseHealthStatus';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -13,8 +14,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "API is running!"', () => {
+      expect(appController.getHealthStatus()).toBe(responseHealthStatus);
     });
   });
 });
