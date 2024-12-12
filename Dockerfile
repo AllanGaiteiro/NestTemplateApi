@@ -5,7 +5,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Instalar dependências globais mínimas (opcional, pode instalar no exec)
-RUN npm install
+RUN npm install -g @nestjs/cli
 
 # Expor a porta onde o app será executado
 EXPOSE 3000

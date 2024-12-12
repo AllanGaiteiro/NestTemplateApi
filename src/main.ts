@@ -12,8 +12,8 @@ async function bootstrap() {
     .setVersion(packageJson.version)
     .addBearerAuth() // Caso queira adicionar autenticação Bearer token
     .build();
-  
-  const document = SwaggerModule.createDocument(app, config);  
+
+  const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
   await app.listen(3000);
