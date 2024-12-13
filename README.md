@@ -1,99 +1,172 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Nest Template API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este projeto é um template para criar APIs utilizando o framework [NestJS](https://nestjs.com/). Ele vem configurado com boas práticas, suporte a TypeORM, Swagger para documentação e um pipeline de testes.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Índice
 
-## Description
+1. [Personalização do Template](#personalizacao-do-template)
+2. [Instalação](#instalacao)
+3. [Uso](#uso)
+4. [Docker](#docker)
+5. [Testes](#testes)
+6. [Contribuição](#contribuicao)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## Personalização do Template
 
-```bash
-$ npm install
+Para personalizar este template, siga os passos abaixo:
+
+### Alterar o nome do projeto
+
+1. Substitua todas as ocorrências de `nest-template` pelo nome desejado para o projeto (por exemplo, `nome-do-projeto`).
+2. Substitua todas as ocorrências de `NestTemplateApi` pelo formato PascalCase do novo nome (por exemplo, `NomeDoProjeto`).
+
+#### No projeto
+
+- **`package.json`**: Atualize os campos `name` e `description`:
+
+```json
+{
+  "name": "nome-do-projeto",
+  "description": "Descrição do projeto"
+}
 ```
 
-## Compile and run the project
+- **Nomes dos arquivos principais**:
+  - Renomeie arquivos, se necessário, para refletir o novo nome do projeto.
 
-```bash
-# development
-$ npm run start
+- **Módulos e Classes**:
+  - Substitua `NestTemplateApi` por `NomeDoProjeto` em todos os arquivos TypeScript.
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```typescript
+@Module({
+  imports: [],
+  controllers: [],
+  providers: [],
+})
+export class NomeDoProjetoModule {}
 ```
 
-## Run tests
+#### No Docker
+
+- Atualize o nome da imagem no `Dockerfile` e no `docker-compose.yml`.
+
+```dockerfile
+# Dockerfile
+LABEL name="nome-do-projeto"
+```
+
+```yaml
+# docker-compose.yml
+services:
+  app:
+    image: nome-do-projeto
+```
+
+#### Em toda a base de código
+
+Use um comando de busca e substituição para alterar o nome globalmente:
 
 ```bash
-# unit tests
+grep -rl 'nest-template-api' ./ | xargs sed -i 's/nest-template-api/nome-do-projeto/g'
+grep -rl 'NestTemplateApi' ./ | xargs sed -i 's/NestTemplateApi/NomeDoProjeto/g'
+```
+
+---
+
+## Instalação
+
+Clone este repositório e instale as dependências:
+
+```bash
+$ git clone https://github.com/seu-usuario/nest-template-api.git
+$ cd nest-template-api
+$ docker compose up --build
+```
+
+## Uso
+
+Este projeto inclui suporte ao Docker para facilitar a execução e o teste em ambientes isolados.
+
+#### Subir o ambiente de desenvolvimento
+
+```bash
+docker compose up
+```
+
+#### Rodar os testes em um container
+
+```bash
+docker compose -f docker-compose.test.yml up
+```
+
+#### Execute a aplicação em modo de DESENVOLVIMENTO:
+
+```bash
+$ docker exec -it nest-template-api sh
+```
+
+#### Execute a aplicação em modo de TESTES:
+
+```bash
+$ docker exec -it nest-template-test-api s
+```
+
+Acesse a API no navegador em: [http://localhost:3000](http://localhost:3000)
+
+A documentação Swagger estará disponível em: [http://localhost:3000/api](http://localhost:3000/api)
+
+---
+## Testes
+
+### Testes Unitários
+
+Rode os testes unitários com o seguinte comando:
+
+```bash
 $ npm run test
+```
 
-# e2e tests
-$ npm run test:e2e
+### Testes de Cobertura
 
-# test coverage
+Gere o relatório de cobertura:
+
+```bash
 $ npm run test:cov
 ```
 
-## Deployment
+### Testes End-to-End (E2E)
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Execute os testes E2E:
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+$ npm run test:e2e
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Testes com Docker Compose
 
-## Resources
+Para rodar os testes em um ambiente isolado usando Docker Compose, utilize o arquivo `docker-compose.test.yml`:
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+docker-compose -f docker-compose.test.yml up
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+---
 
-## Support
+## Contribuição
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Contribuições são bem-vindas! Siga os passos abaixo:
 
-## Stay in touch
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature: `git checkout -b minha-feature`.
+3. Commit suas mudanças: `git commit -m 'Minha nova feature'`.
+4. Envie para o repositório remoto: `git push origin minha-feature`.
+5. Abra um Pull Request.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
-## License
+## Licença
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Este projeto está sob a licença [MIT](LICENSE).
+
