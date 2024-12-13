@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Instalar dependências globais mínimas (opcional, pode instalar no exec)
 RUN npm install -g @nestjs/cli
+RUN npm install --save-dev ts-node
 
 # Expor a porta onde o app será executado
 EXPOSE 3000

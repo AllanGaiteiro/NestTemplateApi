@@ -9,7 +9,11 @@ export class HealthCheckController {
 
   @Get()
   @ApiOperation({ summary: 'Verifica se a API está funcionando' })
-  @ApiResponse({ status: 200, description: 'API está rodando', type: HealthStatusEntity })
+  @ApiResponse({
+    status: 200,
+    description: 'API está rodando',
+    type: HealthStatusEntity,
+  })
   getHealthStatus(): HealthStatusEntity {
     return this.healthCheckService.getHealthStatus();
   }
