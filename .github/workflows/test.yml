@@ -59,10 +59,3 @@ jobs:
 
       - name: Run tests with coverage
         run: npm run test:cov
-        # continue-on-error: true
-
-      - name: Upload coverage results
-        if: success()
-        uses: codecov/codecov-action@v3
-        with:
-          file: result.lcov    # Envia o arquivo de cobertura para o Codecov
