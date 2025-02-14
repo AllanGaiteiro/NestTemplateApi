@@ -80,9 +80,9 @@ grep -rl 'NestTemplateApi' ./ | xargs sed -i 's/NestTemplateApi/NomeDoProjeto/g'
 Clone este repositório e instale as dependências:
 
 ```bash
-$ git clone https://github.com/seu-usuario/nest-template-api.git
-$ cd nest-template-api
-$ docker compose up --build
+git clone https://github.com/seu-usuario/nest-template-api.git
+cd nest-template-api
+docker compose up --build
 ```
 
 ## Uso
@@ -101,16 +101,16 @@ docker compose up
 docker compose -f docker-compose.test.yml up
 ```
 
-#### Execute a aplicação em modo de DESENVOLVIMENTO:
+#### Execute a aplicação em modo de DESENVOLVIMENTO
 
 ```bash
-$ docker exec -it nest-template-api sh
+docker exec -it nest-template-api sh
 ```
 
-#### Execute a aplicação em modo de TESTES:
+#### Execute a aplicação em modo de TESTES
 
 ```bash
-$ docker exec -it nest-template-test-api s
+docker exec -it nest-template-test-api s
 ```
 
 Acesse a API no navegador em: [http://localhost:3000](http://localhost:3000)
@@ -118,6 +118,7 @@ Acesse a API no navegador em: [http://localhost:3000](http://localhost:3000)
 A documentação Swagger estará disponível em: [http://localhost:3000/api](http://localhost:3000/api)
 
 ---
+
 ## Testes
 
 ### Testes Unitários
@@ -125,7 +126,7 @@ A documentação Swagger estará disponível em: [http://localhost:3000/api](htt
 Rode os testes unitários com o seguinte comando:
 
 ```bash
-$ npm run test
+npm run test
 ```
 
 ### Testes de Cobertura
@@ -133,7 +134,7 @@ $ npm run test
 Gere o relatório de cobertura:
 
 ```bash
-$ npm run test:cov
+npm run test:cov
 ```
 
 ### Testes End-to-End (E2E)
@@ -141,7 +142,7 @@ $ npm run test:cov
 Execute os testes E2E:
 
 ```bash
-$ npm run test:e2e
+npm run test:e2e
 ```
 
 ### Testes com Docker Compose
@@ -169,4 +170,3 @@ Contribuições são bem-vindas! Siga os passos abaixo:
 ## Licença
 
 Este projeto está sob a licença [MIT](LICENSE).
-
